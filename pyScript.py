@@ -66,11 +66,10 @@ def adjust_z_height(gcode_file_path, adjusted_file_path, height_adjustment):
         file.writelines(adjusted_lines)
             
             
-# Usage example
-# This will replace any line that contains 'old_text' with 'new line content\n'
-insert_line_before('test5.gcode', 'M280 P0 S40', 'M0')
-replace_line_if_contains('test5.gcode', 'M03', 'M280 P0 S160')
-replace_line_if_contains('test5.gcode', 'M05', 'M280 P0 S40')
-insert_line_before('test5.gcode', 'G4 P1000', 'M280 P0 S40')
+file_name = 'test5.gcode'            
+insert_line_before(file_name, 'M280 P0 S40', 'M0') # make sure that the spinder is activated
+replace_line_if_contains(file_name, 'M03', 'M280 P0 S160') # use M280 S160 to turn on the spindle
+replace_line_if_contains(file_name, 'M05', 'M280 P0 S40') # use M280 S40 to turn off the spindle
+insert_line_before(file_name, 'G4 P1000', 'M280 P0 S40') # make sure the spindle turns off after it reach the target
 
 #adjust_z_height('copper.nc','modifiedcode.txt', 1.58)
